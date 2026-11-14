@@ -13,23 +13,15 @@
     t.src=`assets/bg/${sc.dataset.bg}.jpg`;
   });
 
-  /* mandala: use the video when it loads; if it can't load/play, show its still picture instead of an empty ring */
-  const v=$('#mv'), m=$('.mandala');
-  if(v&&m){
-    const ok=()=>document.body.classList.add('hasvid');   /* the picture already carries the shloka line */
-    let img=null;
-    const showStill=()=>{
-      if(img) return;
-      video = document.createElement('video'); video.src = 'assets/mandela.mp4';
-      img.style.cssText='display:block;width:100%;height:auto;mix-blend-mode:multiply';
-      v.style.display='none'; m.appendChild(img); ok();
-    };
-    const backToVideo=()=>{ if(!img) return; img.remove(); img=null; v.hidden=false; v.style.display=''; };
-    v.addEventListener('error',showStill,true);
-    v.addEventListener('playing',backToVideo);
-    if(v.readyState>=2) ok(); else v.addEventListener('loadeddata',ok,{once:true});
-    if(v.networkState===3) showStill();
-    setTimeout(()=>{ if(v.readyState<2) showStill(); },4000);
+  /* mandala video: always keep the real <video> on screen and keep nudging it to play */
+  const v=$('#mv');
+  if(v){
+    const caption=()=>document.body.classList.add('hasvid');   /* the video/poster already carries the shloka line */
+    if(v.readyState>=2) caption(); else v.addEventListener('loadeddata',caption,{once:true});
+    v.addEventListener('error',()=>{caption(); v.hidden=false;},true);
+    const kick=()=>{ if(v.paused){ const p=v.play(); if(p&&p.catch) p.catch(()=>{}); } };
+    v.addEventListener('canplay',kick);
+    ['pointerdown','touchend','click','scroll'].forEach(e=>addEventListener(e,kick,{passive:true,once:true}));
   }
 
   /* stop guests from sending the RSVP twice */
