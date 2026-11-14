@@ -1,77 +1,123 @@
-:root{--paper:#f7efd8;--gold:#b8923a;--gold2:#e2c36b;--maroon:#6e1423;--rust:#9b3b2d;--olive:#5c4d1c}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:#3d0c16 radial-gradient(circle at 50% 0,#6e1423,#2c0810);color:var(--olive);font:500 1.25rem 'Cormorant Garamond',serif;overflow-x:hidden;text-align:center}
-body.locked{overflow:hidden;height:100vh}
-#inv{position:relative;max-width:520px;margin:auto;overflow:hidden;box-shadow:0 0 70px #000a;
- background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .2 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E")}
-.script{font-family:'Pinyon Script',cursive;font-weight:400;color:var(--rust)}
-.rust{color:var(--rust)}
-.deva{font-family:'Tiro Devanagari Hindi',serif;color:var(--rust)}
-section{position:relative;min-height:100svh;padding:7rem 1.6rem 15rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;overflow:hidden}
-section::before{content:"";position:absolute;inset:12px;border:1.5px solid var(--gold);border-radius:26px 26px 4px 4px;opacity:.55;pointer-events:none;z-index:3}
-section>*:not(.layer):not(.toran):not(#birds){position:relative;z-index:2}
-/* scene image layers (all optional) */
-.layer{position:absolute;z-index:1;pointer-events:none;height:auto}
-.arch,.bells,.floral-top,.toran-flowers,.lotus-bottom,.elephants,.palace-gate,.cows{left:0;width:100%}
-.arch,.bells,.floral-top,.toran-flowers{top:0}
-.lotus-bottom,.elephants,.palace-gate,.cows{bottom:0}
-.leaves-left{top:0;left:0;width:42%}.leaves-right{top:0;right:0;width:42%}
-.floral-left{top:6%;left:0;width:30%}.floral-right{top:6%;right:0;width:30%}
-.peacock{bottom:0;right:0;width:36%}.dome-left{bottom:10%;left:0;width:40%}.dome-right{bottom:10%;right:0;width:40%}.elephant-left{bottom:4%;left:0;width:46%}
-.bells,.toran-flowers{transform-origin:top center;animation:sway 6s ease-in-out infinite alternate}
-.lotus-bottom{animation:bob 7s ease-in-out infinite alternate}
-@keyframes sway{from{transform:rotate(-.7deg)}to{transform:rotate(.7deg)}}@keyframes bob{to{transform:translateY(-6px)}}
-/* gate */
-#gate{position:fixed;inset:0;z-index:50;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;transition:opacity 1.2s}
-#gate.out{opacity:0;pointer-events:none}#gate h1{font-size:4rem}
-.btn{font:600 1.1rem 'Cormorant Garamond',serif;letter-spacing:.08em;background:var(--maroon);color:#f8e9c0;border:1px solid var(--gold);padding:.8rem 1.8rem;border-radius:40px;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px #6e142340;min-height:44px;display:inline-block}
-.btn.ghost{background:transparent;color:var(--maroon)}
-.btn:focus-visible,input:focus-visible,#music:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-#music{position:fixed;top:14px;right:max(14px,calc(50% - 246px));z-index:40;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);background:#f6efddcc;color:var(--maroon);font-size:1.3rem;cursor:pointer}
-#music.off{opacity:.55;text-decoration:line-through}
-/* ganesh + mandala ring (no overlap: ring stays inside its box) */
-.ganesh{position:relative;width:min(68vw,300px);aspect-ratio:1;display:grid;place-items:center;margin:1rem 0 1.5rem}
-.ganesh.small{width:200px}
-.ganesh .ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 90s linear infinite}
-.ganesh .gimg{position:relative;width:48%;filter:drop-shadow(0 4px 8px #0002)}
-.gfallback{position:relative;font:5rem 'Tiro Devanagari Hindi';color:var(--maroon);text-shadow:0 0 16px var(--gold2)}
-@keyframes spin{to{transform:rotate(360deg)}}
-.big{font-size:1.8rem}.shloka{font-size:1.2rem;line-height:2}.title{font-size:2.3rem}
-.om{font:4rem 'Tiro Devanagari Hindi';color:var(--rust)}
-.blessing{font-size:1.7rem;color:var(--olive);max-width:16ch;line-height:1.3}.big2{font-size:2rem;color:var(--rust)}
-.name{font-size:3rem;letter-spacing:.14em;color:var(--rust)}
-#s3>.script{font-size:3.8rem}
-.frame{position:relative;width:min(80vw,340px);padding:10px;background:linear-gradient(135deg,var(--gold2),var(--gold) 50%,var(--gold2));border-radius:170px 170px 8px 8px;box-shadow:0 12px 28px #5a43324d}
-.frame img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:160px 160px 3px 3px;background:#f2c9c9}
-.phtxt{display:none;position:absolute;inset:10px;border-radius:160px 160px 3px 3px;background:#f2c9c9;color:var(--maroon);align-items:center;justify-content:center;padding:2rem}
-.ph .phtxt{display:flex}.ph img{visibility:hidden}
-/* invite details */
-#s4>.script{font-size:4rem;line-height:1.1}
-.when{display:grid;gap:.1rem}.dow,.mon{font-size:1.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--olive)}
-.dnum{font-size:5rem;line-height:1;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:.1rem 1.5rem;margin:.4rem auto}.dnum sup{font-size:1.8rem}
-.at{font-size:1.45rem}.evs{display:grid;gap:1rem;margin-top:.6rem}
-.ev{font-size:1.5rem;font-weight:600;color:var(--rust);letter-spacing:.14em;text-transform:uppercase}
-address{font-style:normal;line-height:1.9;font-size:1.3rem}
-#s6 .names{font-size:3.4rem;line-height:1.2}.closing{font-size:2.1rem;max-width:16ch;line-height:1.3}
-#rsvp{display:grid;gap:.9rem;width:min(86vw,380px)}
-.opt input{position:absolute;opacity:0}.opt span{display:block;padding:.85rem 1rem;border:1px solid var(--gold);border-radius:12px;background:#fffaf0cc;cursor:pointer}
-.opt input:checked+span{background:var(--maroon);color:#f8e9c0}.opt input:focus-visible+span{outline:3px solid var(--gold)}
-#gname{font:inherit;padding:.8rem 1rem;border:1px solid var(--gold);border-radius:12px;background:#fffaf0;color:var(--olive);text-align:center}
-#msg{min-height:1.4em;color:var(--maroon)}#contacts a{display:block;color:var(--olive);text-decoration:none;font-size:1.4rem;font-weight:600;line-height:1.7}
-/* motion */
-.rv{opacity:0;transform:translateY(28px);transition:opacity 1.4s ease,transform 1.4s ease}.rv.in{opacity:1;transform:none}
-.d1{transition-delay:.3s}.d2{transition-delay:.7s}.d3{transition-delay:1.1s}
-.frame.rv{clip-path:inset(0 0 100% 0);transition:clip-path 1.6s ease,opacity 1s,transform 1.4s}.frame.rv.in{clip-path:inset(0)}
-.toran{position:absolute;top:0;left:0;width:100%;height:60px;z-index:1}
-#petals{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden}
-.petal{position:absolute;top:-40px;animation:fall linear forwards;will-change:transform}
-@keyframes fall{to{transform:translate3d(var(--dx),115vh,0) rotate(var(--r))}}
-.t-lotus{background:linear-gradient(160deg,#fbcad6,#e56f94);border-radius:50% 0 50% 0}
-.t-rose{background:linear-gradient(135deg,#d6314f,#8e0e26);border-radius:60% 40% 60% 40%}
-.t-mogra{background:radial-gradient(circle,#f1dd8a 0 14%,#fff 18%);border-radius:50%;box-shadow:0 0 0 2px #fff,0 1px 4px #0003}
-.t-marigold{background:radial-gradient(circle,#d9780a 0 22%,#fbbf24 30%,#f59e0b);border-radius:50%;box-shadow:0 0 0 2px #f9b21d,0 1px 4px #0003}
-#birds .bird{position:absolute;left:-60px;width:34px;color:var(--olive);animation:fly linear infinite;opacity:.8}
-#birds{position:absolute;inset:0;z-index:1;pointer-events:none}
-@keyframes fly{to{transform:translate(calc(100vw + 120px),var(--dy))}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none;clip-path:none!important}html{scroll-behavior:auto}#petals,#birds{display:none}}
+/* ===== EDIT THESE ===== */
+const CONFIG = {
+  mapsUrl:  "https://maps.app.goo.gl/4dGDmz5ZEK1xiU7t9",
+  whatsapp: "+91 8291979537",     // country code + number, no + or spaces
+  sheetUrl: "https://docs.google.com/spreadsheets/d/1Gh94X5_6GMTYYnQC5NjWJ6KPndhfC0F0P0fhkPDaSSU/edit?gid=0#gid=0",                 // Apps Script Web App URL (see README)
+  contacts: [                   // shown under RSVP (tap to call) – replace with real names/numbers
+    {name: "Nirav", phone: "+91 82919 79537"},
+    {name: "Zankhana", phone: "+91 99797 88188"}
+  ]
+};
+/* ====================== */
+const $ = s => document.querySelector(s);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const G = '#b8923a', G2 = '#e2c36b', M = '#6e1423';
+
+// Scene image layers: put PNGs in assets/scene/<name>.png — any missing file is simply skipped
+const LAYERS = {
+  s1:['arch','bells','floral-top','elephants','lotus-bottom'],
+  s2:['leaves-left','leaves-right','floral-top','lotus-bottom'],
+  s3:['leaves-left','leaves-right','palace-gate','lotus-bottom'],
+  s4:['arch','toran-flowers','dome-left','dome-right','elephant-left','lotus-bottom'],
+  s5:['floral-left','floral-right','palace-gate','peacock','lotus-bottom'],
+  s6:['leaves-left','leaves-right','cows','lotus-bottom'],
+  s7:['floral-left','floral-right','palace-gate','peacock','lotus-bottom']
+};
+Object.entries(LAYERS).forEach(([id, names]) => {
+  const sec = document.getElementById(id);
+  names.forEach(n => {
+    const i = new Image(); i.className = 'layer ' + n; i.alt = ''; i.loading = 'lazy'; i.decoding = 'async';
+    i.onerror = () => i.remove();
+    if (n === 'bells' || n === 'toran-flowers') i.onload = () => sec.querySelectorAll('.toran').forEach(t => t.remove());
+    i.src = `assets/scene/${n}.png`; sec.prepend(i);
+  });
+});
+
+// Mandala ring (assets/mandala.png, rotates) + Ganesha emblem (assets/ganesha.png, still)
+function fallbackRing() {
+  let p = '';
+  [[95,16,G],[75,12,M],[55,8,G2]].forEach(([r,n,c],i)=>{ for (let k=0;k<n*2;k++) p += `<ellipse cx="100" cy="${100-r}" rx="${5+i*2}" ry="${14-i*2}" fill="none" stroke="${c}" stroke-width="1.2" transform="rotate(${k*360/(n*2)} 100 100)"/>`; });
+  const s = document.createElement('div'); s.className = 'ring';
+  s.innerHTML = `<svg viewBox="0 0 200 200" width="100%" height="100%" aria-hidden="true"><circle cx="100" cy="100" r="98" fill="none" stroke="${G}" stroke-width="1.5"/>${p}</svg>`; return s;
+}
+document.querySelectorAll('[data-ring]').forEach(box => {
+  const r = new Image(); r.className = 'ring'; r.alt = '';
+  r.onerror = () => r.replaceWith(fallbackRing());
+  r.src = 'assets/mandala.png'; box.appendChild(r);
+  const g = new Image(); g.className = 'gimg'; g.alt = 'Lord Ganesha';
+  g.onerror = () => { const f = document.createElement('div'); f.className = 'gfallback'; f.textContent = 'ॐ'; g.replaceWith(f); };
+  g.src = 'assets/ganesha.png'; box.appendChild(g);
+});
+
+// Fallback toran (hidden automatically once your own bells/toran image loads)
+document.querySelectorAll('.toran').forEach(t => {
+  let s = `<path d="M0 6 Q200 40 400 6" fill="none" stroke="${G}" stroke-width="2"/>`;
+  for (let i=1;i<14;i++){const x=i*400/14,y=6+Math.sin(Math.PI*i/14)*17;
+    s += `<line x1="${x}" y1="${y}" x2="${x}" y2="${y+10}" stroke="${G}"/><path d="M${x-5} ${y+10}q5 -6 10 0v6h-10z" fill="${i%2?M:G}"/><circle cx="${x}" cy="${y+19}" r="2" fill="${G2}"/>`;}
+  t.innerHTML = s;
+});
+
+// Sparrows
+if (!reduce) { const b = $('#birds'), svg = '<svg viewBox="0 0 40 24" fill="currentColor"><path d="M2 12c6-2 10-1 14 2 3-6 9-10 18-9-5 2-8 5-9 8 3 1 5 3 5 6-4-3-9-4-15-3-5 0-9-2-13-4z"/></svg>';
+  for (let i=0;i<3;i++){const d=document.createElement('div');d.className='bird';d.innerHTML=svg;d.style.cssText=`top:${12+i*14}%;--dy:${(i%2?-1:1)*40}px;animation-duration:${18+i*5}s;animation-delay:${i*4}s`;b.appendChild(d);} }
+
+// Falling flowers: lotus, rose, mogra, yellow marigold. Optional images: assets/petals/{lotus,rose,mogra,marigold}.png
+const TYPES = ['lotus','lotus','lotus','rose','rose','mogra','mogra','marigold','marigold'];
+const have = {}; ['lotus','rose','mogra','marigold'].forEach(t => { const i = new Image(); i.onload = () => have[t] = true; i.src = `assets/petals/${t}.png`; });
+const petals = $('#petals'); let intensity = 1, started = false;
+function petal() {
+  if (reduce || document.hidden) return;
+  const t = TYPES[Math.random()*TYPES.length|0], s = (t==='mogra'?9:12) + Math.random()*14;
+  const p = have[t] ? Object.assign(new Image(), {src:`assets/petals/${t}.png`}) : document.createElement('i');
+  p.className = 'petal' + (have[t] ? '' : ' t-' + t); p.alt = '';
+  p.style.cssText = `left:${Math.random()*100}%;width:${s}px;height:${have[t]||t==='mogra'||t==='marigold'?'auto':s*1.2+'px'};opacity:${.7+Math.random()*.3};--dx:${(Math.random()-.5)*180}px;--r:${Math.random()*720}deg;animation-duration:${7+Math.random()*7}s`;
+  if (!have[t] && (t==='mogra'||t==='marigold')) p.style.height = s + 'px';
+  petals.appendChild(p); setTimeout(() => p.remove(), 15000);
+}
+(function loop(){ if (started) petal(); setTimeout(loop, 650/intensity + (innerWidth<600?200:0)); })();
+addEventListener('scroll', () => { intensity = 1 + Math.min(scrollY/$('#s1').offsetHeight, 1.2) * 1.5; }, {passive:true});
+
+// Reveal on scroll
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.2});
+document.querySelectorAll('.rv').forEach(e => io.observe(e));
+
+// Enter + music
+const bg = $('#bg'), mb = $('#music');
+$('#enter').addEventListener('click', () => {
+  $('#gate').classList.add('out'); document.body.classList.remove('locked');
+  mb.hidden = false; started = true; scrollTo(0,0);
+  bg.volume = .7; bg.play().catch(() => { mb.classList.add('off'); mb.setAttribute('aria-pressed','false'); });
+  setTimeout(() => $('#gate').remove(), 1300);
+});
+mb.addEventListener('click', () => {
+  if (bg.paused) { bg.play(); mb.classList.remove('off'); mb.setAttribute('aria-pressed','true'); }
+  else { bg.pause(); mb.classList.add('off'); mb.setAttribute('aria-pressed','false'); }
+});
+
+// Maps + contacts
+$('#maps').href = CONFIG.mapsUrl;
+$('#contacts').innerHTML = CONFIG.contacts.map(c => `<a href="tel:${c.phone.replace(/[^+\d]/g,'')}">${c.name}<br>${c.phone}</a>`).join('');
+
+// RSVP
+const msg = $('#msg');
+function getData() {
+  const att = document.querySelector('input[name=att]:checked'), name = $('#gname').value.trim();
+  if (!att || !name) { msg.textContent = 'Please choose an option and enter your name.'; return null; }
+  return {name, att: att.value};
+}
+$('#rsvp').addEventListener('submit', async e => {
+  e.preventDefault(); const d = getData(); if (!d) return;
+  if (!CONFIG.sheetUrl) { msg.textContent = 'RSVP sheet is not connected yet — please use the WhatsApp button.'; return; }
+  msg.textContent = 'Sending…';
+  try {
+    await fetch(CONFIG.sheetUrl, {method:'POST', mode:'no-cors', body:new URLSearchParams({name:d.name, attendance:d.att})});
+    msg.textContent = d.att === 'Yes' ? 'Thank you, ' + d.name + '! We look forward to seeing you. 🙏' : 'Thank you for letting us know, ' + d.name + '. You will be missed. 🙏';
+    $('#rsvp').querySelector('button[type=submit]').disabled = true;
+  } catch { msg.textContent = 'Something went wrong. Please try WhatsApp.'; }
+});
+$('#wa').addEventListener('click', () => {
+  const d = getData(); if (!d) return;
+  const t = d.att === 'Yes' ? `Namaste! This is ${d.name}. I will be joining the Vastu Pujan at Madhavam on 25th November. 🙏`
+                            : `Namaste! This is ${d.name}. Sorry, I won't be able to attend the Vastu Pujan at Madhavam. 🙏`;
+  open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t)}`, '_blank');
+});
