@@ -55,3 +55,22 @@
 .scene.bgd.s6 #msg{font-size:3.2cqw;min-height:0}
 .scene.bgd.s6 #contacts{width:72cqw;margin-top:.5cqw;padding-top:2cqw;border-top:1px solid #b98a2e66;gap:8cqw}
 .s6 #contacts a{font-size:3.1cqw;line-height:1.3;padding:0}
+
+/* MADHAVAM: reliable full-scene backgrounds */
+
+.scene.bgd[data-bg] {
+    background-image: var(--bg) !important;
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    aspect-ratio: var(--ar, 9 / 16) !important;
+    min-height: 0 !important;
+}
+
+.scene.bgd[data-bg] .fb-art {
+    display: none !important;
+}
+
+.scene.bgd[data-bg]::before {
+    display: none !important;
+}
