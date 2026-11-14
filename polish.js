@@ -20,7 +20,7 @@
     let img=null;
     const showStill=()=>{
       if(img) return;
-      img=new Image(); img.alt='Ganesha mandala'; img.src='assets/mandala-poster.jpg';
+      video = document.createElement('video'); video.src = 'assets/mandela.mp4';
       img.style.cssText='display:block;width:100%;height:auto;mix-blend-mode:multiply';
       v.style.display='none'; m.appendChild(img); ok();
     };
