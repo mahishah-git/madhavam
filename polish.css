@@ -8,6 +8,9 @@
 /* ---- sections were reordered, so each one picks its own art via data-bg ---- */
 .scene.bgd[data-bg]{background-image:var(--bg,none)!important;aspect-ratio:var(--ar,9/16)!important}
 
+/* never show the empty fallback ring */
+#mring,#mfb{display:none!important}
+
 /* ---- slide 1: centred mandala, big shimmering Vastu Pujan ---- */
 .scene.bgd.s1 .mandala{width:50cqw}
 .scene.bgd.s1 .txt{--t:calc(20% + 52cqw);gap:1.4cqw}
