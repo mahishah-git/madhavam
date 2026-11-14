@@ -47,11 +47,24 @@
     }
   }
 
-  /* stop guests from sending the RSVP twice */
-  const f=$('#rsvp');
-  if(f) f.addEventListener('submit',()=>{
-    if(!$('#gname').value.trim()) return;
-    const b=f.querySelector('button[type=submit]');
-    b.disabled=true; setTimeout(()=>{b.disabled=false},4000);
-  });
+  /* RSVP -> Google Sheet (replaces the old handler in script.js) */
+  document.addEventListener('submit',async e=>{
+    if(!e.target || e.target.id!=='rsvp') return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    const f=e.target, msg=$('#msg'), name=$('#gname').value.trim();
+    const ans=f.querySelector('[name=ans]:checked').value;
+    if(!name){ msg.textContent='Please enter your name.'; return; }
+    if(!CONFIG.sheetUrl){ msg.textContent='RSVP is not connected yet. Please call one of the numbers below.'; return; }
+    const btn=f.querySelector('button[type=submit]'); btn.disabled=true; msg.textContent='Sending…';
+    try{
+      const r=await fetch(CONFIG.sheetUrl,{method:'POST',body:JSON.stringify({name,answer:ans})});
+      const res=await r.json();
+      if(!res.ok) throw new Error(res.error||'failed');
+      msg.textContent = ans==='Yes' ? 'Thank you, '+name+'! We look forward to celebrating with you.'
+                                    : 'Thank you for letting us know, '+name+'. You will be missed.';
+      f.reset();
+    }catch(err){
+      msg.textContent='Could not send. Please call one of the numbers below.';
+    }finally{ btn.disabled=false; }
+  },true);
 })();
