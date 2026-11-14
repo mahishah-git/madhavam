@@ -18,10 +18,33 @@
   if(v){
     const caption=()=>document.body.classList.add('hasvid');   /* the video/poster already carries the shloka line */
     if(v.readyState>=2) caption(); else v.addEventListener('loadeddata',caption,{once:true});
-    v.addEventListener('error',()=>{caption(); v.hidden=false;},true);
+    /* second chance: download the whole file, then play it from memory (works around server/range problems) */
+    let tried=false;
+    const viaBlob=async()=>{
+      tried=true;
+      try{
+        const r=await fetch('assets/mandala.mp4',{cache:'no-store'}); if(!r.ok) return;
+        const b=await r.blob();
+        v.removeAttribute('autoplay'); v.src=URL.createObjectURL(new Blob([b],{type:'video/mp4'}));
+        v.muted=true; v.loop=true; const p=v.play(); if(p&&p.catch) p.catch(()=>{});
+      }catch(e){}
+    };
+    v.addEventListener('error',()=>{
+      caption(); v.hidden=false;
+      if(!tried && !String(v.currentSrc).startsWith('blob:')) viaBlob();
+    },true);
+    if(v.networkState===3 && !tried) viaBlob();
     const kick=()=>{ if(v.paused){ const p=v.play(); if(p&&p.catch) p.catch(()=>{}); } };
     v.addEventListener('canplay',kick);
     ['pointerdown','touchend','click','scroll'].forEach(e=>addEventListener(e,kick,{passive:true,once:true}));
+
+    /* add #debug to the end of the address to see what the video is doing */
+    if(location.hash==='#debug'){
+      const d=document.createElement('pre');
+      d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:99;margin:0;padding:8px;font:12px/1.3 monospace;background:#000c;color:#0f0;white-space:pre-wrap';
+      setInterval(()=>{ d.textContent='src: '+(v.currentSrc||'(none)')+'\nnetwork: '+v.networkState+'  ready: '+v.readyState+'  paused: '+v.paused+'\nerror: '+(v.error?v.error.code+' '+(v.error.message||''):'none'); },500);
+      document.body.appendChild(d);
+    }
   }
 
   /* stop guests from sending the RSVP twice */
