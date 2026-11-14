@@ -59,3 +59,8 @@
 .scene.bgd.s6 #msg{font-size:3.2cqw;min-height:0}
 .scene.bgd.s6 #contacts{width:72cqw;margin-top:.5cqw;padding-top:2cqw;border-top:1px solid #b98a2e66;gap:8cqw}
 .s6 #contacts a{font-size:3.1cqw;line-height:1.3;padding:0}
+
+/* iPhone/iPad: masks + blend modes make a <video> draw blank there, so use a plain oval crop instead */
+@supports (-webkit-touch-callout:none){
+  .mandala video{mix-blend-mode:normal!important;-webkit-mask-image:none!important;mask-image:none!important;clip-path:ellipse(49% 50% at 50% 50%)}
+}
