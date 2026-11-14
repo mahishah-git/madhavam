@@ -8,42 +8,34 @@
 <meta property="og:description" content="You are warmly invited — Wednesday, 25th November 2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Pinyon+Script&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="locked">
-
-<!-- ENTER GATE (tap starts the music) -->
 <div id="gate">
-  <div class="mandala-wrap small" data-mandala></div>
+  <div class="ganesh small" data-ring></div>
   <p class="deva">॥ श्री गणेशाय नमः ॥</p>
   <h1 class="script">Madhavam</h1>
   <button id="enter" class="btn">Begin Invitation</button>
 </div>
-
 <button id="music" aria-label="Mute or unmute music" aria-pressed="true" hidden>♪</button>
 <div id="petals" aria-hidden="true"></div>
 
+<main id="inv">
 <!-- 1 · GANESH JI -->
-<section id="s1" class="full">
-  <div class="frame-orn"></div>
-  <div class="ganesh">
-    <div class="mandala-wrap" data-mandala></div>
-    <!-- Put your Ganesha image at assets/ganesha.png (transparent PNG works best) -->
-    <img class="gimg" src="assets/ganesha.png" alt="Lord Ganesha" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'gfallback',textContent:'ॐ'}))">
-  </div>
+<section id="s1">
+  <svg class="toran" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"></svg>
+  <div class="ganesh" data-ring data-emblem></div>
   <p class="deva big rv">॥ श्री गणेशाय नमः ॥</p>
   <p class="deva shloka rv d2">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥</p>
   <h2 class="deva title rv d3">वास्तु पूजन</h2>
-  <div class="scrollhint" aria-hidden="true">⌄</div>
 </section>
 
 <!-- 2 · SHRINATHJI -->
 <section id="s2">
   <p class="om rv">ॐ</p>
-  <p class="serif rv d1" data-parallax="-0.08">With the Blessings of Shrinathji</p>
+  <p class="blessing rv d1">With the Blessings of Shrinathji</p>
   <figure class="frame rv d2">
-    <!-- Your photo: assets/shrinathji.jpg -->
     <img src="assets/shrinathji.jpg" alt="Shrinathji" loading="lazy" onerror="this.parentNode.classList.add('ph')">
     <figcaption class="phtxt">Add your photo:<br>assets/shrinathji.jpg</figcaption>
   </figure>
@@ -52,10 +44,9 @@
 <!-- 3 · VASTU PUJAN -->
 <section id="s3">
   <h2 class="script rv">Vastu Pujan</h2>
-  <h3 class="serif name rv d1">Madhavam</h3>
+  <h3 class="name rv d1">Madhavam</h3>
   <p class="deva rv d1">माधवम्</p>
   <figure class="frame rv d2">
-    <!-- Your photo: assets/house.jpg -->
     <img src="assets/house.jpg" alt="Our home, Madhavam" loading="lazy" onerror="this.parentNode.classList.add('ph')">
     <figcaption class="phtxt">Add your photo:<br>assets/house.jpg</figcaption>
   </figure>
@@ -65,40 +56,40 @@
 <section id="s4">
   <svg class="toran" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"></svg>
   <div id="birds" aria-hidden="true"></div>
-  <h2 class="script maroon rv">Please Join Us</h2>
-  <div class="card rv d1">
-    <p class="date">Wednesday, 25th November, 2026</p>
-    <p class="time">8:00 AM onwards</p>
-    <div class="line"></div>
-    <p class="ev">Shrifal Homam</p><p class="time">10:31 AM</p>
-    <div class="line"></div>
-    <p class="ev">Lunch</p><p class="time">11:30 AM onwards</p>
+  <h2 class="script rust rv">Please Join Us</h2>
+  <div class="when rv d1" aria-label="Wednesday, 25th November, 2026, 8:00 AM onwards">
+    <p class="dow">Wednesday</p>
+    <p class="dnum script">25<sup>th</sup></p>
+    <p class="mon">November, 2026</p>
+    <p class="at">8:00 AM onwards</p>
+  </div>
+  <div class="evs rv d2">
+    <div><p class="ev">Shrifal Homam</p><p class="at">10:31 AM</p></div>
+    <div><p class="ev">Lunch</p><p class="at">11:30 AM onwards</p></div>
   </div>
 </section>
 
 <!-- 5 · VENUE -->
 <section id="s5">
-  <h3 class="serif name rv">Madhavam</h3>
+  <h3 class="name rv">Madhavam</h3>
   <p class="deva rv">माधवम्</p>
-  <!-- EDIT ADDRESS: replace the placeholder lines -->
   <address class="rv d1">[House number, Street name]<br>[Area, City – PIN code]<br>[State, India]</address>
   <a id="maps" class="btn rv d2" href="#" target="_blank" rel="noopener">Navigate to Madhavam</a>
 </section>
 
 <!-- 6 · BLESSINGS -->
 <section id="s6">
-  <p class="serif rv">With the Blessings of</p>
-  <!-- To add more names later, just copy a <p class="names"> line below -->
+  <p class="blessing rv">With the Blessings of</p>
   <div class="family rv d1">
     <p class="names script">Minaxi &amp; Pravin Shah</p>
-    <!-- <p class="names script">Grandparent names here</p> -->
+    <!-- more names: copy the line above -->
   </div>
-  <p class="serif closing rv d2">Looking forward to celebrating this beautiful beginning with you.</p>
+  <p class="script closing rv d2">Looking forward to celebrating this beautiful beginning with you.</p>
 </section>
 
 <!-- 7 · RSVP -->
 <section id="s7">
-  <h2 class="serif rv">We Would Love You To Join Us</h2>
+  <h2 class="blessing big2 rv">We Would Love You To Join Us</h2>
   <p class="rv d1">Kindly confirm your presence.</p>
   <form id="rsvp" class="rv d2" novalidate>
     <label class="opt"><input type="radio" name="att" value="Yes"><span>Yes, I will be joining.</span></label>
@@ -108,9 +99,9 @@
     <button class="btn ghost" type="button" id="wa">Reply on WhatsApp instead</button>
     <p id="msg" role="status"></p>
   </form>
-  <p class="foot">॥ माधवम् ॥</p>
+  <div class="rv d3"><p class="ev">RSVP</p><div id="contacts"></div></div>
 </section>
-
+</main>
 <audio id="bg" src="assets/music.mp3" loop preload="none"></audio>
 <script src="script.js"></script>
 </body>
