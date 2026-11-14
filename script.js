@@ -116,10 +116,5 @@ safe(()=>{
  kinds.forEach(k=>{ if(!have[k]) have[k]=u(S[k]); });
 });
 
-/* v5: no falling petals; scenes take their picture's exact shape; drifting golden dust */
-safe(()=>{ on=false; const p=$('#petals'); if(p) p.remove(); });
+/* v5: no falling petals; scenes take their picture's exact shape */
 safe(()=>{ $$('.scene').forEach((sc,i)=>{ const t=new Image(); t.onload=()=>{sc.style.aspectRatio=t.naturalWidth+' / '+t.naturalHeight}; t.src=`assets/bg/s${i+1}.jpg`; }); });
-safe(()=>{ if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
- const d=document.createElement('div'); d.id='dust'; d.setAttribute('aria-hidden','true');
- for(let i=0;i<16;i++){const e=document.createElement('i'); e.style.cssText=`left:${Math.random()*100}%;--s:${3+Math.random()*5}px;--t:${14+Math.random()*14}s;--d:${-Math.random()*20}s;--x:${(Math.random()-.5)*60}px`; d.appendChild(e);}
- document.body.appendChild(d); });
