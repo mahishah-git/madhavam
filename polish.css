@@ -10,6 +10,7 @@
 
 /* never show the empty fallback ring */
 #mring,#mfb{display:none!important}
+#mv{display:block!important}
 
 /* ---- slide 1: centred mandala, big shimmering Vastu Pujan ---- */
 .scene.bgd.s1 .mandala{width:50cqw}
